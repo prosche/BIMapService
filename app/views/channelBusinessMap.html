@@ -1,0 +1,49 @@
+<div class="container theme-showcase" role="main">
+    <form name="mapForm" novalidate>
+        <div class="row" style="height: 160px;">
+            <div class="col-lg-12" >
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">商业圈展示</h3>
+                    </div>
+                    <div class="panel-body">
+                        <label class="col-lg-3" style="width: 300px;height: 30px;">
+                            <label class="col-lg-2" style="float: left;text-align:center;top: 10px">
+                                <span class="label label-default">地市</span>
+                            </label>
+                            <select  id="cityId" name="cityId" class="selectpicker" style="margin-left: 30%" multiple data-live-search="true" data-size="5" ng-model="mapModle.cityId" ng-options="city.id as city.name for city in vm.citys" ng-change="mapModle.clickCity(cityId)">
+                            </select>
+                        </label>
+                        <label class="col-lg-3" style="width: 350px;height: 30px;">
+                            <label class="col-lg-1" style="float: left;margin-top: 15px">
+                                <span class="label label-default">县区</span>
+                            </label>
+                            <select  id="countyId" class="selectpicker" multiple data-live-search="true" data-size="5" ng-model="mapModle.countyId" ng-options="county.id as county.name group by county.city for county in countys" ng-change="mapModle.clickCounty()">
+                            </select>
+                        </label>
+
+                        <label class="col-lg-3" style="width: 350px;height: 30px">
+                            <label class="col-lg-4" style="float: left;text-align:center;margin-top: 10px">
+                                <span class="label label-default">商圈名称</span>
+                            </label>
+                            <div ng-class="{'has-error':mapForm.$submitted&&mapForm.businessName.$invalid&&mapForm.businessName == null}">
+                                <input type="text" class="form-control" placeholder="" style="width: 150px;height: 30px" ng-model="mapModle.businessName">
+                            </div>
+                        </label>
+
+                        <label style="width: 100px;">
+                            <button type="submit" class="button button-glow button-rounded button-raised button-primary btn btn-lg btn-default navbar-btn " ng-disabled="mapForm.$invalid"  ng-click="mapModle.getData('channel')" >
+                                查询
+                            </button>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <div id="container" style="height: 800px;margin-top: -2%">
+    </div>
+</div>
+
+<script type="text/javascript" src="vender/bootstrap-datetimepicke/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+<script type="text/javascript" src="vender/bootstrap-datetimepicke/bootstrap-datatime-picker.js" charset="UTF-8"></script>

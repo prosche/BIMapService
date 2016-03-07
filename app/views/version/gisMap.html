@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <!--348d0073e7548f443b63b221ccc8b93c4607946b2659fc519890c924f82b4475ddd71b058178d02b-->
+    <!--<script language="javascript" src="http://221.180.144.57:17095/gisability?ability=apiserver&abilityuri=webapi/auth.json&t=ajaxmap&v=3.0&key=156c4e9606c0fba8f42daa6b98f8bb46"></script>-->
+    <script language="javascript" src="http://221.180.144.57:17095/gisability?ability=apiserver&abilityuri=webapi/auth.json&t=ajaxmap&v=3.0&key=348d0073e7548f443b63b221ccc8b93c4607946b2659fc519890c924f82b4475ddd71b058178d02b"></script>
+    <script language="text/javascript" src="vender/jquery/jquery.min.js"></script>
+    <script language="javascript">
+        var mapObj,toolbar,overview,scale,mapSwitch,marker;
+        function mapInit()
+        {
+            var opt = {
+                zoom:13,//设置地图zoom级别
+                center:new MMap.LngLat(123.451995,41.723155),//设置地图中心点
+                doubleClickZoom:true,//双击放大地图
+                scrollwheel:true//鼠标滚轮缩放地图
+            }
+            mapObj = new MMap.Map("iCenter",opt);
+
+            mapObj.plugin(["MMap.ToolBar","MMap.OverView","MMap.Scale","MMap.MapSwitch"],function()
+            {
+                //加载工具条
+                toolbar = new MMap.ToolBar();
+                toolbar.autoPosition=false;
+                mapObj.addControl(toolbar);
+                //加载鹰眼
+                overview = new MMap.OverView();
+                mapObj.addControl(overview);
+                //加载比例尺
+                scale = new MMap.Scale();
+                mapObj.addControl(scale);
+                //卫星-普通地图切换
+                mapSwitch = new MMap.MapSwitch();
+                mapObj.addControl(mapSwitch);
+            });
+//            mapObj.bind(mapObj,"click",mapclick);
+//            addCellPoint();
+//            addCellPoint1();
+//            addCellPoint3();
+            addLargePoint();
+//            addMorePoint();
+        }
+        $(function(){
+            autoFrame();//自动根据浏览器大小构建折叠窗口
+            if(self!=top){top.location=self.location;}//确保在顶级页面
+            showNode();
+            setTimeout(function(){mapInit();},100);
+        });
+        $(window).resize(function(){
+            resize();
+            autoFrame();
+        });
+
+        function addMorePoint(){
+            var marker;
+            marker = new MMap.Marker({id:"m",
+                position:new MMap.LngLat(123.442039,41.737751),
+                icon:"http://code.mapabc.com/images/lan_1.png", }) //自定义构造MMap.Marker对象
+
+            var marker1;
+            marker1 = new MMap.Marker({id:"m1",
+                position:new MMap.LngLat(123.440322,41.757739),
+                icon:"http://code.mapabc.com/images/lan_1.png", }) //自定义构造MMap.Marker对象
+
+            var arr=new Array();
+            arr.push(marker);
+            arr.push(marker1);
+
+            mapObj.addOverlays(arr);
+
+        }
+
+        function addLargePoint(){
+            var markerData = [{"lng":123.348091,"lat":41.642681,"count":10316.47},
+                {"lng":122.899301,"lat":42.359781,"count":2413.57},
+                {"lng":123.352091,"lat":41.769791,"count":1215.85},
+                {"lng":122.737396,"lat":42.267009,"count":3724.71},
+                {"lng":123.545701,"lat":41.824631,"count":1988.42}];
+            console.log(markerData);
+
+            var marker = new Array();
+            for(var i = 0; i<markerData.length; i++){
+                console.log(markerData[i]);
+                marker[i] = new MMap.Marker({id:"m"+i,
+                    position:new MMap.LngLat(markerData[i].lng,markerData[i].lat),
+//                    icon:"http://code.mapabc.com/images/lan_1.png",
+                    icon:"../images/marker.png",
+                    offset:new MMap.Pixel(0,-36),
+                    draggable:true, //可拖动
+                    Content:"<div style='width:45px;height:40px;background:url(custom_a_j.png) 0 0;overflow: hidden;'><div style='width:40px;height:20px;margin-top:6px;margin-top:6px;margin-left:5px;'>Mark</div></div>",
+                }) //自定义构造MMap.Marker对象
+            }
+
+            var arr = new Array();
+            for(var i = 0; i<marker.length; i++){
+                console.log(marker[i]);
+                arr.push(marker[i]);
+            }
+
+            mapObj.addOverlays(arr);
+
+            var inforWindowList = new Array();
+
+            for(var i = 0; i<markerData.length; i++){
+                console.log(markerData[i].count);
+                inforWindowList[i] = new MMap.InfoWindow
+                ({
+                    content:"该基站下用户数为"+ markerData[i].count+"，平均APRU为65.2元",
+                    size:new MMap.Size(300,0)
+                });
+            }
+
+            for(var i = 0; i<inforWindowList.length; i++){
+                clickMarker(marker[i],inforWindowList[i])
+            }
+
+        }
+
+        function clickMarker(marker,inforWindow){
+            mapObj.bind(marker,"click",function(e)
+            {
+                inforWindow.open(mapObj, marker.getPosition());
+            });
+        }
+
+        function addCellPoint()
+        {
+            var lngX = 123.451995;
+            var latY = 41.723155;
+            console.log(lngX + "," + latY);
+            marker = new MMap.Marker({
+                id:"m", //marker id
+                position:new MMap.LngLat(lngX,latY), //位置
+                icon:"http://code.mapabc.com/images/lan_1.png",//复杂图标
+                offset:new MMap.Pixel(-10,-10), //相对于基点的偏移量
+                draggable:true, //可拖动
+                cursor:"default",//鼠标悬停时显示的光标
+                visible:true,//可见
+            });
+            mapObj.addOverlays(marker);
+            var inforWindow = new MMap.InfoWindow
+            ({
+                content:"该基站下用户数为19345，平均APRU为65.2元",
+                size:new MMap.Size(300,0)
+            });
+            mapObj.bind(marker,"click",function(e)
+            {
+                inforWindow.open(mapObj,marker.getPosition());
+            });
+        }
+
+        function addCellPoint1()
+        {
+            marker1 = new MMap.Marker({
+                id:"m1", //marker id
+                position:new MMap.LngLat(123.459720,41.742371), //位置
+                icon:"http://code.mapabc.com/images/lan_1.png",//复杂图标
+                offset:new MMap.Pixel(-10,-10), //相对于基点的偏移量
+                draggable:true, //可拖动
+                cursor:"default",//鼠标悬停时显示的光标
+                visible:true,//可见
+            });
+            mapObj.addOverlays(marker1);
+            var inforWindow = new MMap.InfoWindow
+            ({
+                content:"该基站下用户数为26579,平均APRU为78.5元",
+                size:new MMap.Size(300,0)
+            });
+            mapObj.bind(marker1,"click",function(e)
+            {
+                inforWindow.open(mapObj,marker1.getPosition());
+            });
+        }
+        function addMarker()
+        {
+            var zoomData = mapObj.getZoom()
+            console.log("增加点" + zoomData);
+//            console.log((document.getElementById("lngX").value -0.00005) + "," + (document.getElementById("latY").value -0.00003));
+            console.log(document.getElementById("lngX").value + "," + document.getElementById("latY").value);
+            MfromLngLatToContainerPixel();
+            MfromContainerPixelToLngLat();
+            var lngX = document.getElementById("lngX").value;
+            var latY = document.getElementById("latY").value;
+            console.log(lngX + "," + latY);
+            marker = new MMap.Marker({
+                id:"m", //marker id
+                position:new MMap.LngLat(lngX,latY), //位置
+                icon:"http://code.mapabc.com/images/lan_1.png",//复杂图标
+                offset:new MMap.Pixel(0,-36), //相对于基点的偏移量
+                draggable:true, //可拖动
+                cursor:"default",//鼠标悬停时显示的光标
+                visible:true,//可见
+            });
+            mapObj.addOverlays(marker);
+            var inforWindow = new MMap.InfoWindow
+            ({
+                content:"该基站下用户数为19345，平均APRU为65.2元",
+                size:new MMap.Size(300,0)
+            });
+            mapObj.bind(marker,"click",function(e)
+            {
+                inforWindow.open(mapObj,marker.getPosition());
+            });
+        }
+
+        function addCellPoint3()
+        {
+            marker2 = new MMap.Marker({
+                id:"m2", //marker id
+                position:new MMap.LngLat(123.430366,41.753385), //位置
+                icon:"http://code.mapabc.com/images/lan_1.png",//复杂图标
+                offset:new MMap.Pixel(-10,-10), //相对于基点的偏移量
+                draggable:true, //可拖动
+                cursor:"default",//鼠标悬停时显示的光标
+                visible:true,//可见
+            });
+            mapObj.addOverlays(marker2);
+            var inforWindow = new MMap.InfoWindow
+            ({
+                content:"该基站下用户数为26579,平均APRU为78.5元",
+                size:new MMap.Size(300,0)
+            });
+            mapObj.bind(marker2,"click",function(e)
+            {
+                inforWindow.open(mapObj,marker2.getPosition());
+            });
+        }
+        function MfromLngLatToContainerPixel(){
+            var px = document.getElementById("lngX").value;
+            var py = document.getElementById("latY").value;
+            var pixel=mapObj.lnglatToPixel(new MMap.LngLat(px,py),10);
+            document.getElementById("pixelx").value=pixel.x;
+            document.getElementById("pixely").value=pixel.y;
+        }
+        function MfromContainerPixelToLngLat(){
+            var lnglatX=parseInt(document.getElementById("pixelx").value);
+            var lnglatY=parseInt(document.getElementById("pixely").value);
+            var ll=mapObj.pixelToLngLat(new MMap.Pixel(lnglatX,lnglatY),10);
+            document.getElementById("lngX").value=ll.lng;
+            document.getElementById("latY").value=ll.lat;
+        }
+        function addMCircle() {//在地图上画圆
+            removeCircle();
+            var circle = new MMap.Circle({
+                id:"circle", //id
+                center:new MMap.LngLat(document.getElementById("lngX").value,document.getElementById("latY").value),// 圆心
+                radius:document.getElementById("radius").value, //半径
+                strokeColor: "#F33", //线颜色
+                strokeOpacity: 1, //线透明度
+                strokeWeight: 3, //线粗细度
+                fillColor: "#ee2200", //填充颜色
+                fillOpacity: 0.35 //填充透明度
+            });
+            mapObj.addOverlays(circle);
+            var inforWindow = new MMap.InfoWindow({ //圆的信息窗体
+                content:"这是一个圆！",//窗体内容
+                offset:new MMap.Pixel(0,0),//相对于基点的偏移量
+            });
+            mapObj.bind(circle,"click",function(e){
+                inforWindow.open(mapObj,e.lnglat);
+            });
+        }
+        function removeCircle(){
+            mapObj.removeOverlays("circle");//删除圆
+        }
+
+        function getPoint() {
+            var str="点的id："+marker.id+"\n"+"点的图标："+marker.icon+"\n点的坐标："+marker.position.lng+","+marker.position.lat+"\n点是否可被拖拽："+marker.draggable+"\n点是否可见："+marker.visible;
+            document.getElementById("result1").value=str;
+        }
+
+        function mapclick(e){
+            document.getElementById("lngX").value=e.lnglat.lng;
+            document.getElementById("latY").value=e.lnglat.lat;
+            addMarker();
+        };
+        function setCity_areaCode(){//根据区号设置位置
+            var areaCode = document.getElementById("areaCode").value;
+            console.log(document.getElementById("areaCode").value);
+            console.log(areaCode);
+            mapObj.setCity(areaCode);
+        }
+        function byCity(){
+            console.log(document.getElementById("city").value)
+            var city = document.getElementById("city").value;
+            console.log(city);
+            var partition = new MMap.Partition();
+            partition.byCity(city,addCityMarker);
+        }
+        function addCityMarker(data){
+            console.log(data)
+            marker = new MMap.Marker({
+                id:"m", //marker id
+                position:new MMap.LngLat(data.city.x,data.city.y), //位置
+                icon:"http://code.mapabc.com/images/lan_1.png",//复杂图标
+                draggable:true, //可拖动
+                visible:true,//可见
+            });
+            mapObj.addOverlays(marker);
+            mapObj.setFitView(marker);
+            var inforWindow = new MMap.InfoWindow
+            ({
+                content:data.city.name,
+                size:new MMap.Size(100,0),
+                offset:{x:-3,y:-32}
+            });
+            mapObj.bind(marker,"click",function(e)
+            {
+                inforWindow.open(mapObj,marker.getPosition());
+            });
+        }
+        function byDistrict(){
+            mapObj.clearOverlays();
+//            console.log(document.getElementById("areaCode").value);
+            district = document.getElementById("district").value;
+            city = document.getElementById("areaCode").value;
+            var partition = new MMap.Partition();
+            partition.byDistrict(district,city,byDistricty_CallBack);
+        }
+        function byDistricty_CallBack(data){
+            if(data.state="E0")
+            {
+                console.log(data.list)
+                var lineNum = data.list.length;//返回总数.
+                for(var i=0;i<lineNum;i++){
+                    drawpolygon(data.list[i].coords,data.list[i].name);
+                }
+            }
+        }
+/*
+        function byDistricty_CallBack(data){
+            var resultStr="";
+            if(data.state="E0")
+            {
+                var lineNum = data.list.length;//返回总数.
+                resultCount=lineNum;
+                var content="";
+                for(var i=0;i<lineNum;i++){
+                    content += "<div style=\"cursor:pointer;\"  onclick=\"drawpolygon('"+data.list[i].coords+"','"+data.list[i].name+"')\"><dl>";
+                    content +="<dt>"+"区县名称："+data.list[i].name+"<dt>区县代码："+data.list[i].adcode+"</dt>"+"<dt>区县所属城市区号："+data.list[i].citycode+"</dt>";
+                    content+="</dl></div>";
+                }
+                resultStr+=content;
+            }
+            else if(data.state ="E1")
+            {
+                resultStr = "未查找到任何结果!<br />建议：<br />1.请确保所有字词拼写正确。<br />2.尝试不同的关键字。<br />3.尝试更宽泛的关键字。";
+            }
+            else
+            {
+                resultStr= "错误信息："+data.state+"请对照API Server v2.0.0 简明提示码对照表查找错误类型";
+            }
+            document.getElementById("result").innerHTML = resultStr;
+
+        }*/
+
+        function drawpolygon(arr,name){
+            mapObj.clearOverlays();
+            var polygonArr = new Array();
+            var district = arr.split(";");
+            var lnglat = new Array();
+            for(var e=0;e<district.length-1;e++){
+                var lnglat=district[e].split(",");
+                polygonArr.push(new MMap.LngLat(lnglat[0],lnglat[1]));
+            }
+            var polygon=new MMap.Polygon({
+                id:"polygon01",
+                path:polygonArr, //线经纬度数组
+                strokeColor:"#005cb5", //线颜色
+                strokeOpacity:0.8, //线透明度
+                strokeWeight:6, //线宽
+                fillColor: "#f5deb3", //填充色
+                fillOpacity: 0 ,//填充透明度
+            });
+            mapObj.addOverlays(polygon);
+            var inforWindow = new MMap.InfoWindow({//多边形的信息窗体
+                content:name,//窗体内容
+                offset:new MMap.Pixel(0,0),//相对于基点的偏移
+            });
+            mapObj.bind(polygon,"click",function(e){
+                inforWindow.open(mapObj,e.lnglat);
+            });
+            mapObj.setFitView();
+        }
+    </script>
+</head>
+<body onload="mapInit();">
+<div id="iCenter" style="width:100%; height:500px;"></div>
+<br/>
+<button onClick="addMarker()">增加点</button>
+<button onClick="addMarker()">中心点</button>
+<button onClick="getPoint()">获取中心点数据</button>
+<textarea name="result1" cols="50" rows="10" id="result1"></textarea>
+<div><input id="radius"></div>
+<button onClick="addMCircle()">增加面</button>
+<input value="鼠标画圆" onclick="mapObj.setMouseTool('circle')" type="button" class="btnbg" style="width:120px"/></p>
+<table border="0" cellspacing="0" cellpadding="0">
+    <tr>
+        <td>地图经纬度坐标：(鼠标左键在地图上单击获取经纬度坐标)</td>
+    </tr>
+    <tr>
+        <td>X：<input type="text" id="lngX" name="lngX" value=""/>Y：<input type="text" id="latY" name="latY" value=""/></td>
+    </tr>
+    <tr>
+        <td colspan="2">屏幕坐标：</td>
+    </tr>
+    <tr>
+        <td>X：<input type="text" id="pixelx" name="pixelx" value="" class="inner_input8"/>Y：<input type="text" id="pixely" name="pixely" value=""/></td>
+    </tr>
+</table>
+<input type="button" name="button3" id="button3" value="设置鼠标绘圆" onClick="mapObj.setCurrentMouseTool(DRAW_CIRCLE);">
+<div>查询城市信息<br />城　市：<input type="text" id="city" name="city" value="010" /><br /><input type="button" value="查询" onclick="byCity()" style="margin-left:100px"/></div>
+区号：<input type="text" name="areaCode" id="areaCode" value="021"/><input type="button" value="根据区号设置位置" onclick="setCity_areaCode()" />
+<div>查询区县信息<br />区 县：<input type="text" id="district" name="district" value="海淀区" /><br />城 市：<input type="text" id="cityname" name="cityname" value="北京" /><br /><input type="button" value="查询" onclick="byDistrict()" style="margin-left:100px"/></div>
+<div id="result" name="result" style="height:507px;overflow:auto;width:327px;margin-top:5px"></div>
+
+</body>
+</html>

@@ -1,0 +1,49 @@
+.clear{ clear:both}
+.con{width:375px;}
+.main_t{ margin-bottom:10px;height: 0px;}
+.main_t_l{ float:left; width:130px; height:100px;}
+.main_t_r{ width:200px; height:0px;}
+.main_t_r{ float:right}
+.main_t_r_t{ font-size:14px; font-weight:bold; color:#0066ff; margin-bottom:5px; line-height:20px;}
+.main_t_r_c{ height:20px;margin-bottom:5px;}
+.main_t_r_b{ font-size:12px; font-weight:bold;line-height:15px}
+.main_b_list{ font-size:12px; color:#666; line-height:20px; margin-top: 10px; border-bottom: dashed #cccccc 1px}
+.main { width:375px; border:#bfbfbf 1px solid; padding:10px; background-color:#FFF
+}
+.close_gb{
+    width:28px;position:relative;
+    height: 28px; float:right;
+    top:15px;
+    z-index:100; border:0}
+.btn{
+    display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+.btn .btn-primary{
+    color: #fff;
+    background-color: #337ab7;
+    border-color: #2e6da4;
+}
+.cpeHotMap{
+    background-color: #337ab7;
+}
+.cpeDataMap{
+    background-color: #d0251b;
+}

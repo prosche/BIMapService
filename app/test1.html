@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript" src="vender/angular-1.2.19/angular.js"></script>
+</head>
+<body >
+<!-- DOM -->
+
+<div ng-controller="selectController" class ="container">
+
+    <div ng-repeat= "class in classes">
+
+        {{class.Name}}
+
+        <select ng-model="SelectdCollection[class.Name]" ng-options="option for option in class.Options" ></select>
+
+    </div>
+
+    <a class="btn btn-success" ng-click= "submit()">送出 </a>
+
+</div>
+
+
+<script>
+var app = angular.module('app', []);
+app.controller('selectController', function ($scope) {
+        $scope.classes = [
+
+            {
+
+                "Name": "温度 ",
+
+                "Options" : ["Cold" , "Hot", "Normal"]
+
+            },
+
+            {
+
+                "Name": "份量 ",
+
+                "Options" : ["Big" , "Middle" , "Small" ]
+
+            }
+
+        ];
+
+        $scope.SelectdCollection = {};
+
+        $scope.submit = function() {
+
+            console .log($scope. SelectdCollection);
+
+        };
+ });
+</script>
+
+</body>
+</html>

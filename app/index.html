@@ -1,0 +1,104 @@
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>
+        GIS展示
+    </title>
+
+    <link href="vender/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="vender/bootstrap-select/dist/css/bootstrap-select.css" />
+    <!--<link rel="stylesheet" href="vender/bootstrap-select/dist/css/bootstrap-select.min.css" />-->
+    <link href="vender/bootstrap-datetimepicke/bootstrap-datetimepicker.css" rel="stylesheet">
+    <link rel="stylesheet" href="vender/bootstrap/css/buttons.css" />
+    <link rel="stylesheet" href="styles/dailog.css" />
+    <link rel="stylesheet" href="vender/select/dist/select.css" />
+    <!--MAP -->
+    <link rel="stylesheet" href="vender/lbs/css/DrawingManager_min.css" />
+    <link rel="stylesheet" href="vender/lbs/css/SearchInfoWindow_min.css" />
+
+    <!--<script src="vender/ak/getscript.js"></script>-->
+    <script src="vender/jquery-1.9.1/jquery-1.9.1.js"></script>
+    <!--<script src="vender/jquery/jquery.min.js"></script>-->
+    <script type="text/javascript" src="vender/bootstrap/js/bootstrap.min.js"></script>
+
+    <!--<script type="text/javascript" src="vender/bootstrap-select/dist/js/bootstrap-select.min.js" ></script>-->
+    <!--MAP -->
+
+    <!--156c4e9606c0fba8f42daa6b98f8bb46-->
+    <!--348d0073e7548f443b63b221ccc8b93c4607946b2659fc519890c924f82b4475ddd71b058178d02b-->
+    <script language="javascript" src="http://221.180.144.57:17095/gisability?ability=apiserver&abilityuri=webapi/auth.json&t=ajaxmap&v=3.0&key=348d0073e7548f443b63b221ccc8b93c4607946b2659fc519890c924f82b4475ddd71b058178d02b"></script>
+
+    <script src="vender/ak/ak.js"></script>
+    <script type="text/javascript" src="vender/lbs/js/Heatmap_min.js"></script>
+
+    <!--[if IE]>
+    <script type="text/javascript" src="vender/ie8/html5.js"></script>
+    <script type="text/javascript" src="vender/ie8/excanvas.compiled.js"></script>
+    <![endif]-->
+
+    <!--<script type="text/javascript" src="vender/jquery-1/jquery-1.11.2.min.js"></script>-->
+    <script type="text/javascript" src="vender/jqueryui/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="vender/jqgrid/js/i18n/grid.locale-cn.js"></script>
+    <script type="text/javascript" src="vender/jqgrid/js/jquery.jqGrid.src.js"></script>
+    <script type="text/javascript" src="vender/jquery-1.8/jquery-ui-1.9.1.custom.min.js"></script>
+    <!--<script type="text/javascript" src="vender/bootstrap-select/dist/js/bootstrap-select.min.js" ></script>-->
+    <script type="text/javascript" src="vender/message/messenger.js"></script>
+    <script type="text/javascript" src="vender/message/messenger-theme-future.js"></script>
+
+    <script type="text/javascript" src="vender/angular-1.2.19/angular.js"></script>
+    <script type="text/javascript" src="vender/angular/angular-ui-router.min.js"></script>
+    <script type="text/javascript" src="vender/angular-1.2.19/angular-sanitize.min.js"></script>
+    <!--<script type="text/javascript" src="vender/angular/select/select.js"></script>-->
+    <script type="text/javascript" src="vender/angular/date/date.js"></script>
+
+    <script type="text/javascript" src="scripts/constants.js"></script>
+    <script type="text/javascript" src="scripts/app.js"></script>
+
+    <script type="text/javascript" src="scripts/controller/map-controller.js"></script>
+    <script type="text/javascript" src="scripts/controller/open-cpe-controller.js"></script>
+    <script type="text/javascript" src="scripts/controller/gis-controller.js"></script>
+    <script type="text/javascript" src="scripts/controller/cell-controller.js"></script>
+
+    <!--MAP -->
+    <script type="text/javascript" src="scripts/service/SigService.js"></script>
+    <script type="text/javascript" src="scripts/service/LbsService.js"></script>
+    <script type="text/javascript" src="scripts/service/GisService.js"></script>
+    <script type="text/javascript" src="scripts/service/TimeService.js"></script>
+    <script type="text/javascript" src="scripts/service/HotMapDataService.js"></script>
+    <script type="text/javascript" src="scripts/service/ChannelMapDataService.js"></script>
+    <script type="text/javascript" src="scripts/service/CellMapDataService.js"></script>
+    <script type="text/javascript" src="scripts/service/DivMapService.js"></script>
+    <script type="text/javascript" src="scripts/service/ClickCityService.js"></script>
+
+    <script type="text/javascript" src="scripts/config/city.js"></script>
+    <script type="text/javascript" src="scripts/config/customer.js"></script>
+    <script type="text/javascript" src="scripts/config/dataType.js"></script>
+    <script type="text/javascript" src="scripts/config/citycounty.js"></script>
+    <script type="text/javascript" src="scripts/config/countys.js"></script>
+    <script type="text/javascript" src="scripts/config/county.js"></script>
+    <script type="text/javascript" src="scripts/config/gprsType.js"></script>
+    <script type="text/javascript" src="scripts/config/channelType1.js"></script>
+    <script type="text/javascript" src="scripts/config/channelType2.js"></script>
+    <script type="text/javascript" src="scripts/config/channelType3.js"></script>
+    <script type="text/javascript" src="scripts/config/channelType4.js"></script>
+    <script type="text/javascript" src="scripts/config/channelStar.js"></script>
+    <script type="text/javascript" src="scripts/config/jsjd.js"></script>
+    <script type="text/javascript" src="scripts/filter/PropsFilter.js"></script>
+    <!--MAP -->
+    <script type="text/javascript" src="vender/lbs/js/LuShu_min.js"></script>
+    <script type="text/javascript" src="vender/lbs/js/DistanceTool_min.js"></script>
+    <script type="text/javascript" src="vender/lbs/js/MarkerClusterer_min.js"></script>
+    <script type="text/javascript" src="vender/lbs/js/TextIconOverlay_min.js"></script>
+
+    <script type="text/javascript" src="vender/lbs/js/DrawingManager_min.js"></script>
+    <script type="text/javascript" src="vender/lbs/js/SearchInfoWindow_min.js"></script>
+
+    <script type="text/javascript" src="vender/bootstrap-select/dist/js/bootstrap-select.js" ></script>
+
+   </head>
+<body ng-app="BIMapService">
+<div ui-view ></div>
+</body>
+</html>

@@ -1,0 +1,196 @@
+<div class="container theme-showcase" role="main">
+    <form name="mapForm" novalidate>
+        <div class="row" style="height: 160px;">
+            <div class="col-lg-12" >
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">4G用户 &middot; 热力学展示</h3>
+                    </div>
+                    <div class="panel-body">
+                        <label class="col-lg-3" style="width: 30%;height: 20px;float: left">
+                            <label class="col-lg-4" style="float: left;text-align:center;top: 10px">
+                                <span style="color: red">*</span><span class="label label-default">日期</span>
+                            </label>
+                            <div  ng-class="{'has-error':mapForm.$submitted&&mapForm.opTime.$invalid}">
+                                <div class="input-group date form_date col-lg-7" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input1">
+                                    <input id="opTime" name="opTime" class="form-control" size="16" type="text" ng-model="mapModle.opTime" readonly required>
+                                    <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+                                </div>
+                                <label for="dtp_input1" class="col-lg-1 control-label"style="float: left" ></label>
+                                <input type="hidden" id="dtp_input1" value="" /><br/>
+                            </div>
+                        </label>
+
+
+                        <label class="col-lg-3" style="width: 25%;height: 30px;">
+                            <label class="col-lg-4" style="float: left;text-align:center;top: 10px">
+                                <span style="color: red">*</span><span class="label label-default">地市</span>
+                            </label>
+                            <div ng-class="{'has-error':mapForm.$submitted&&mapForm.cityId.$invalid}">
+                                <select name="cityId" id="cityId" class="form-control" style="width: 50%;height: 30px" ng-model="mapModle.cityId" ng-options="city.id as city.name for city in citys" ng-click="mapModle.clickCity(cityId)" required>
+                                </select>
+                            </div>
+                        </label>
+
+
+                        <label class="col-lg-3" style="width: 25%;height: 30px;">
+                            <label class="col-lg-4" style="float: left;text-align:center;top: 10px">
+                                <span class="label label-default">县区</span>
+                            </label>
+                            <div ng-class="{'has-error':mapForm.$submitted&&mapForm.county.$invalid&&mapForm.county.$invalid}">
+                                <select name="countyId" id="countyId" class="form-control" style="width: 50%;height: 30px" ng-model="mapModle.countyId" ng-options="county.id as county.name for county in vm.countys" ng-click="mapModle.clickCounty()">
+                                </select>
+                            </div>
+                        </label>
+
+
+                        <label style="width: 150px;">
+                            <button type="submit" class="button button-glow button-rounded button-raised button-primary" ng-disabled="mapForm.$invalid"  ng-click="mapModle.showData('gprs')" >
+                                查询
+                            </button>
+                        </label>
+
+
+                        <label class="col-lg-3" style="width: 30%;height: 30px;">
+                            <label class="col-lg-5" style="float: left;text-align:center;top: 10px;margin-left: -8%">
+                                <span class="label label-default">热力阀值</span>
+                            </label>
+                            <input type="number" class="form-control" placeholder="0" aria-describedby="basic-addon1" name="maxValue" id="maxValue" ng-model="mapModle.maxValue" style="width: 35%;height: 30px;" ng-change="mapModle.changeMaxValue()">
+                        </label>
+                        <label class="col-lg-3" style="width: 30%;height: 30px;">
+                            <label class="col-lg-4" style="float: left;text-align:center;top: 10px;margin-left: -7%">
+                                <span style="color: red">*</span><span class="label label-default">数据分类</span>
+                            </label>
+                            <div ng-class="{'has-error':mapForm.$submitted&&mapForm.dataTypeId.$invalid&&mapForm.dataTypeId == null}">
+                                <select name="dataTypeId" id="dataTypeId" class="form-control" style="width: 42%;height: 30px" ng-model="mapModle.dataTypeId" ng-options="dataType.id as dataType.name for dataType in dataTypes" required>
+                                </select>
+                            </div>
+                        </label>
+
+
+                        <label class="col-lg-3" style="width: 25%;height: 30px;">
+                            <label class="col-lg-4" style="float: left;text-align:center;top: 10px;margin-left: -25%">
+                                <span style="color: red">*</span><span class="label label-default">周期</span>
+                            </label>
+                            <div ng-class="{'has-error':mapForm.$submitted&&mapForm.customerId.$invalid&&mapForm.customerId == null}">
+                                <select name="customerId" id="customerId" class="form-control" style="width: 50%;height: 30px;margin-left:11%" ng-model="mapModle.customerId" ng-options="customer.id as customer.name for customer in customers" required>
+                                </select>
+                            </div>
+                        </label>
+
+                        <label class="col-lg-3" style="width: 30%;height: 30px;margin-left: 1%">
+                            <label class="col-lg-4" style="float: left;text-align:center;top: 10px;margin-left: -7%">
+                                <span style="color: red">*</span><span class="label label-default">流量分类</span>
+                            </label>
+                            <div ng-class="{'has-error':mapForm.$submitted&&mapForm.gprsTypeId.$invalid&&mapForm.gprsTypeId == null}">
+                                <select name="gprsTypeId" id="gprsTypeId" class="form-control" style="width: 42%;height: 30px;margin-left: 30%" ng-model="mapModle.gprsTypeId" ng-options="gprsType.id as gprsType.name for gprsType in gprsTypes" required>
+                                </select>
+                            </div>
+                        </label>
+
+
+                        <label class="col-lg-4" style="width: 30%;height: 30px;margin-left: -3%">
+                            <label class="col-lg-6" style="float: left;text-align:center;margin-top: 10px;margin-left: -15%">
+                                <span class="label label-default">基站利用率(%)大于</span>
+                            </label>
+                            <div ng-class="{'has-error':mapForm.$submitted&&mapForm.cpeRateMin.$invalid&&mapForm.cpeRateMin == null}">
+                                <input type="number" class="form-control" placeholder="0" aria-describedby="basic-addon1" name="cpeRateMin" id="cpeRateMin" ng-model="mapModle.cpeRateMin" style="width: 35%;height: 30px;">
+                            </div>
+                        </label>
+
+                        <label class="col-lg-3" style="width: 30%;height: 30px;margin-left: -3%">
+                            <label class="col-lg-4" style="float: left;text-align:center;margin-top: 10px;margin-left: -7%">
+                                <span class="label label-default">小于</span>
+                            </label>
+                            <div ng-class="{'has-error':mapForm.$submitted&&mapForm.cpeRateMax.$invalid&&mapForm.cpeRateMax == null}">
+                                <input type="number" class="form-control" placeholder="0" aria-describedby="basic-addon1" name="cpeRateMax" id="cpeRateMax" ng-model="mapModle.cpeRateMax" style="width: 35%;height: 30px;">
+                            </div>
+                        </label>
+                        <label class="col-lg-3" style="width: 30%;height: 30px;margin-left: 7%">
+                            <label class="col-lg-4" style="float: left;text-align:center;margin-top: 10px;margin-left: -35%">
+                                <span class="label label-default">4G用户数(户)大于</span>
+                            </label>
+                            <div ng-class="{'has-error':mapForm.$submitted&&mapForm.lteUserCountsMin.$invalid&&mapForm.lteUserCountsMin == null}">
+                                <input type="number" class="form-control" placeholder="0" aria-describedby="basic-addon1" name="lteUserCountsMin" id="lteUserCountsMin" ng-model="mapModle.lteUserCountsMin" style="width: 35%;height: 30px;margin-left: 9%">
+                            </div>
+                        </label>
+                        <label class="col-lg-3" style="width: 30%;height: 30px;margin-left: -8%">
+                            <label class="col-lg-4" style="float: left;text-align:center;margin-top: 10px;margin-left: -16%">
+                                <span class="label label-default">4G用户数(户)小于</span>
+                            </label>
+                            <div ng-class="{'has-error':mapForm.$submitted&&mapForm.lteUserCountsMax.$invalid&&mapForm.lteUserCountsMax == null}">
+                                <input type="number" class="form-control" placeholder="0" aria-describedby="basic-addon1" name="lteUserCountsMax" id="lteUserCountsMax" ng-model="mapModle.lteUserCountsMax" style="width: 35%;height: 30px;margin-left: 30%">
+                            </div>
+                        </label>
+
+                        <label class="col-lg-3" style="width: 30%;height: 30px;margin-left: 1%">
+                            <label class="col-lg-4" style="float: left;text-align:center;margin-top: 10px;margin-left: -35%">
+                                <span class="label label-default">4G流量(M)大于</span>
+                            </label>
+                            <div ng-class="{'has-error':mapForm.$submitted&&mapForm.lteFlowsMin.$invalid&&mapForm.lteFlowsMin == null}">
+                                <input type="number" class="form-control" placeholder="0" aria-describedby="basic-addon1" name="lteFlowsMin" id="lteFlowsMin" ng-model="mapModle.lteFlowsMin" style="width: 35%;height: 30px;margin-left: 9%">
+                            </div>
+                        </label>
+                        <label class="col-lg-3" style="width: 30%;height: 30px;">
+                            <label class="col-lg-4" style="float: left;text-align:center;margin-top: 10px;margin-left: -10%">
+                                <span class="label label-default">4G流量(M)小于</span>
+                            </label>
+                            <div ng-class="{'has-error':mapForm.$submitted&&mapForm.lteFlowsMax.$invalid&&mapForm.lteFlowsMax == null}">
+                                <input type="number" class="form-control" placeholder="0" aria-describedby="basic-addon1" name="lteFlowsMax" id="lteFlowsMax" ng-model="mapModle.lteFlowsMax" style="width: 35%;height: 30px;margin-left: 34%">
+                            </div>
+                        </label>
+                        <label class="col-lg-3" style="width: 30%;height: 30px;">
+                            <label class="col-lg-4" style="float: left;text-align:center;margin-top: 10px;margin-left: -28%">
+                                <span class="label label-default">2G&3G用户数(户)大于</span>
+                            </label>
+                            <div ng-class="{'has-error':mapForm.$submitted&&mapForm.gsmTdUserCountsMin.$invalid&&mapForm.gsmTdUserCountsMin == null}">
+                                <input type="number" class="form-control" placeholder="0" aria-describedby="basic-addon1" name="gsmTdUserCountsMin" id="gsmTdUserCountsMin" ng-model="mapModle.gsmTdUserCountsMin" style="width: 35%;height: 30px;margin-left: 26%">
+                            </div>
+                        </label>
+                        <label class="col-lg-3" style="width: 30%;height: 30px;margin-left: -5%">
+                            <label class="col-lg-4" style="float: left;text-align:center;margin-top: 10px;margin-left: -28%">
+                                <span class="label label-default">2G&3G用户数(户)小于</span>
+                            </label>
+                            <div ng-class="{'has-error':mapForm.$submitted&&mapForm.gsmTdUserCountsMax.$invalid&&mapForm.gsmTdUserCountsMax == null}">
+                                <input type="number" class="form-control" placeholder="0" aria-describedby="basic-addon1" name="gsmTdUserCountsMax" id="gsmTdUserCountsMax" ng-model="mapModle.gsmTdUserCountsMax" style="width: 35%;height: 30px;margin-left: 27%">
+                            </div>
+                        </label>
+
+
+
+                        <label class="col-lg-3" style="width: 30%;height: 30px;">
+                            <label class="col-lg-4" style="float: left;text-align:center;margin-top: 10px;margin-left: -14%">
+                                <span class="label label-default">2G&3G流量(M)大于</span>
+                            </label>
+                            <div ng-class="{'has-error':mapForm.$submitted&&mapForm.gsmTdFlowsMin.$invalid&&mapForm.gsmTdFlowsMin == null}">
+                                <input type="number" class="form-control" placeholder="0" aria-describedby="basic-addon1" name="gsmTdFlowsMin" id="gsmTdFlowsMin" ng-model="mapModle.gsmTdFlowsMin" style="width: 35%;height: 30px;margin-left: 34%">
+                            </div>
+                        </label>
+                        <label class="col-lg-3" style="width: 30%;height: 30px;margin-left: -2%">
+                            <label class="col-lg-4" style="float: left;text-align:center;margin-top: 10px;margin-left: -14%">
+                                <span class="label label-default">2G&3G流量(M)小于</span>
+                            </label>
+                            <div ng-class="{'has-error':mapForm.$submitted&&mapForm.gsmTdFlowsMax.$invalid&&mapForm.gsmTdFlowsMax == null}">
+                                <input type="number" class="form-control" placeholder="0" aria-describedby="basic-addon1" name="gsmTdFlowsMax" id="gsmTdFlowsMax" ng-model="mapModle.gsmTdFlowsMax" style="width: 35%;height: 30px;margin-left: 34%">
+                            </div>
+                        </label>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <!--<div class="jumbotron"  style="height: 800px">-->
+    <div id="container" style="height: 800px;margin-top: 15%">
+    </div>
+</div>
+
+<script type="text/javascript" src="vender/bootstrap-datetimepicke/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+<script type="text/javascript" src="vender/bootstrap-datetimepicke/bootstrap-datatime-picker.js" charset="UTF-8"></script>
+
+<script>
+    function showMapType(){
+        console.log($('#baiduLbsDiv').html());
+    }
+</script>

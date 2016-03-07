@@ -1,0 +1,9 @@
+/*
+{"opTime":"20151110","cityId":{"$in":[240,411]},
+"countyCode":{"$in":[24002,24003,24009,24010,24011]},
+"newChannelType1Name":{"$in":[95000,96000]},
+"newChannelType2Name":{"$in":[96200]},
+"xzCountyName":{"$like":"%五%"},
+"businessName":{"$like":"%%"}
+}
+*/

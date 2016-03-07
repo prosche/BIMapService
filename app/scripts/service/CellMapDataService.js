@@ -1,0 +1,60 @@
+'use strict';
+angular.module(constVar.appName)
+    .factory('cellMapDataService',function (){
+
+        function resultObject(status,errorMessage,result){
+            this.status= status;// true/false
+            this.errorMessage = errorMessage;//错误信息
+            this.result = result;//结果对象 可能为数组
+        };
+        var myCellMapService = {
+            celllMap : function (data,colors){
+                var mapPoints = new Array();
+                mapPoints = this.getPointsMapFun(data,colors);
+                return new resultObject(true, "", mapPoints);
+            },
+            getPointsMapFun : function(data,colors){
+                var points = new Array();
+                for(var i =0 ;i< colors.length;i++){
+                    points[i] = new Array();
+                }
+                for(var j = 0; j < data.length; j++){
+                    if(parseInt(data[j].buisFlag)==0){
+                        var i = points[3]==""?0:points[3].length;
+                        points[3][i] = this.getData(data[j]);
+                    } else if (parseInt(data[j].buisFlag)!=0&&parseInt(data[j].avgLte)<10){
+                        var i = points[0]==""?0:points[0].length;
+                        points[0][i] = this.getData(data[j]);
+                    } else if (parseInt(data[j].buisFlag)!=0&&parseInt(data[j].avgLte)>=10 && parseInt(data[j].avgLte)<=30){
+                        var i = points[1]==""?0:points[1].length;
+                        points[1][i] = this.getData(data[j]);
+                    } else if (parseInt(data[j].buisFlag)!=0&&parseInt(data[j].avgLte)>=30){
+                        var i = points[2]==""?0:points[2].length;
+                        points[2][i] = this.getData(data[j]);
+                    }
+                }
+                return points;
+            },
+            getData : function(data){
+                return {
+                    lng : data.longId,
+                    lat : data.latId,
+                    cityId : data.cityId,
+                    countyId : data.countyId,
+                    dataName : data.dataName==""?0:data.dataName,
+                    countryFlag : data.countryFlag==""?0:data.countryFlag,
+                    buisFlag : data.buisFlag==""?0:data.buisFlag,
+                    lacCiCnt : data.lacCiCnt==""?0:data.lacCiCnt,
+                    lacCiBh : data.lacCiBh==""?0:data.lacCiBh,
+                    cpeCnt : data.cpeCnt==""?0:data.cpeCnt,
+                    avgCpeArpu : data.avgCpeArpu==""?0:data.avgCpeArpu,
+                    dataCz : data.dataCz==""?0:data.dataCz,
+                    avgLte : data.avgLte==""?0:data.avgLte,
+                    lteMore50 : data.lteMore50==""?0:data.lteMore50,
+                    cpeCntM10 : data.cpeCntM10==""?0:data.cpeCntM10
+                } ;
+            }
+        }
+        return myCellMapService;
+
+    });

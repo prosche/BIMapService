@@ -1,0 +1,111 @@
+/**
+ * Created by Administrator on 2015/6/17.
+ */
+angular.module(constVar.appName,[
+    'ui.router',
+    'ngSanitize',
+    'ui.date',
+    //'ui.select',
+    'props'
+])
+    .config(function($httpProvider) {//'iframe.service','iframe.grid','iframe.message','iframe.form'
+        $httpProvider.defaults.useXDomain = true;
+        delete $httpProvider.defaults.headers.common['X-Requested-With'];
+        //$httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
+        //增加Content-Type = application/x-www-form-urlencoded;charset=utf-8,否则post时按request.getParameter 方式取不到，查可以通过request.getInputStream 方式取到
+    })
+    .config(function($stateProvider,$urlRouterProvider){
+        $stateProvider.state('/',{
+            url:'/',
+            templateUrl:'views/cpeHotPoints.html',
+            controller:'mapController'
+        })
+            .state('cpeHotPoints',{
+                url:'/cpeHotPoints',
+                templateUrl:'views/cpeHotPoints.html',
+                controller:'mapController'
+            })
+            .state('cpeMap',{
+                url:'/cpeMap',
+                templateUrl:'views/cpeMap.html',
+                controller:'mapController'
+            })
+            .state('map',{
+                url:'/map',
+                templateUrl:'views/version/map.html',
+                controller:'mapController'
+            })
+            .state('opencpe',{
+                url:'/opencpe',
+                templateUrl:'views/opencpe.html',
+                controller:'opencpeController'
+            })
+            .state('opengiscell',{
+                url:'/opengiscell',
+                templateUrl:'views/opengiscell.html',
+                controller:'opencpeController'
+            })
+            .state('giscellmap',{
+                url:'/giscellmap',
+                templateUrl:'views/GisCellMap.html',
+                controller:'gisController'
+            })
+            .state('gishcellmap',{
+                url:'/gishcellmap',
+                templateUrl:'views/version/GisHCellMap.html',
+                controller:'gisController'
+            })
+            .state('lteHotPoints',{
+                url:'/lteHotPoints',
+                templateUrl:'views/lteHotPoints.html',
+                controller:'mapController'
+            })
+            .state('lteMap',{
+                url:'/lteMap',
+                templateUrl:'views/lteMap.html',
+                controller:'mapController'
+            })
+            .state('opengprs',{
+                url:'/opengprs',
+                templateUrl:'views/opengprs.html',
+                controller:'opencpeController'
+            })
+            .state('channelMap',{
+                url:'/channelMap',
+                templateUrl:'views/channelMap.html',
+                controller:'mapController'
+            })
+            .state('channelBusinessMap',{
+                url:'/channelBusinessMap',
+                templateUrl:'views/channelBusinessMap.html',
+                controller:'mapController'
+            })
+            .state('channelMap1',{
+                url:'/channelMap1',
+                templateUrl:'views/version/channelMap1.html',
+                controller:'mapController'
+            })
+            .state('openchannel',{
+                url:'/openchannel',
+                templateUrl:'views/openchannel.html',
+                controller:'opencpeController'
+            })
+            .state('openchannelBusiness',{
+                url:'/openchannelBusiness',
+                templateUrl:'views/openchannelBusiness.html',
+                controller:'opencpeController'
+            })
+            .state('cellMap',{
+                url:'/cellMap',
+                templateUrl:'views/cellMap.html',
+                controller:'cellController'
+            })
+            .state('opencell',{
+                url:'/opencell',
+                templateUrl:'views/opencell.html',
+                controller:'opencpeController'
+            })
+        ;
+
+        $urlRouterProvider.otherwise('/');
+    });

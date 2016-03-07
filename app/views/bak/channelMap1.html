@@ -1,0 +1,188 @@
+<div class="container theme-showcase" role="main">
+    <form name="mapForm" novalidate>
+        <div class="row" style="height: 160px;">
+            <div class="col-lg-12" >
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">渠道信息展示</h3>
+                    </div>
+                    <div class="panel-body">
+                        <label class="col-lg-3" style="width: 350px;height: 20px;float: left">
+                            <label class="col-lg-4" style="float: left;text-align:center;top: 10px">
+                                <span class="label label-default">日期</span>
+                            </label>
+                            <div  ng-class="{'has-error':mapForm.$submitted&&mapForm.opTime.$invalid}">
+                                <div class="input-group date form_date col-lg-7" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input1">
+                                    <input id="opTime" name="opTime" class="form-control" size="16" type="text" ng-model="mapModle.opTime" readonly required>
+                                    <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+                                </div>
+                                <label for="dtp_input1" class="col-lg-1 control-label"style="float: left" ></label>
+                                <input type="hidden" id="dtp_input1" value="" /><br/>
+                            </div>
+                        </label>
+
+
+                        <label class="col-lg-3" style="width: 300px;height: 30px;">
+                            <label class="col-lg-2" style="float: left;text-align:center;top: 10px">
+                                <span class="label label-default">地市</span>
+                            </label>
+                            <!--<div ng-class="{'has-error':mapForm.$submitted&&mapForm.cityId.$invalid}">-->
+                            <!--<select name="cityId" id="cityId" class="form-control" style="width: 150px;height: 30px" ng-model="mapModle.cityId" ng-options="city.id as city.name for city in citys" ng-click="mapModle.clickCity(cityId)" required>
+                            </select>-->
+
+                            <!--<select id="city" class="selectpicker" multiple data-live-search="true" data-size="5" ng-model="mapModle.cityId">-->
+                            <!--<option name="cityId" id="cityId"  ng-repeat="city in vm.citys" >{{city.name}}</option>-->
+                            <!--&lt;!&ndash;<option data-tokens="last">I am "last"</option>&ndash;&gt;-->
+                            <!--</select>-->
+                            <select  id="cityId" name="cityId" class="selectpicker" style="margin-left: 30%" multiple data-live-search="true" data-size="5" ng-model="mapModle.cityId" ng-options="city.id as city.name for city in vm.citys" ng-change="mapModle.clickCity(cityId)">
+                            </select>
+                            <!--<div style="margin-left: 90px" >-->
+                            <!--<ui-select multiple ng-model="mapModle.cityId" theme="bootstrap" ng-disabled="disabled" sortable="true" close-on-select="false"  class="form-control" style="width: 450px" title="&#45;&#45; 地市 &#45;&#45;"  >-->
+                            <!--<ui-select-match placeholder="&#45;&#45; 地市 &#45;&#45;"  ng-click="mapModle.clickCity(cityId)" >{{$item.name}} </ui-select-match>-->
+                            <!--<ui-select-choices repeat="city.id as city in vm.citys | propsFilter: {id: $select.search, name: $select.search}" ng-click="mapModle.clickCity(cityId)">-->
+                            <!--<div ng-bind-html="city.name | highlight: $select.search" ng-class="{'has-error':mapForm.$submitted&&mapForm.cityId.$invalid}" id="cityId" name="cityId" required></div>-->
+                            <!--&lt;!&ndash;<small>-->
+                            <!--类别: {{city.id}}-->
+                            <!--编码: <span ng-bind-html="''+city.name | highlight: $select.search"></span>-->
+                            <!--</small>&ndash;&gt;-->
+                            <!--</ui-select-choices>-->
+                            <!--</ui-select>-->
+                            <!--</div>-->
+                            <!--</div>-->
+                        </label>
+                        <label class="col-lg-3" style="width: 350px;height: 30px;">
+                            <label class="col-lg-1" style="float: left;margin-top: 15px">
+                                <span class="label label-default">营业区</span>
+                            </label>
+                            <!--<select id="county" class="selectpicker" multiple data-live-search="true" ng-model="mapModle.countyId">-->
+                            <!--<option name="countyIds" id="countyIds"  ng-repeat="county in vm.countys " >{{county.name}}</option>-->
+                            <!--<div>{{vm.countys}}</div>-->
+                            <!--&lt;!&ndash;<option ng-model="htmlBody">I am "last"</option>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<div ng-bind-html="county.name | highlight: $select.search"></div>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<option ng-repeat="county.id as county in vm.countys | propsFilter: {id: $select.search, name: $select.search}" ></option>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<option data-tokens="last">I am "last"</option>&ndash;&gt;-->
+                            <!--</select>-->
+                            <!--<div>{{vm.countys}}</div>-->
+                            <!--<select  id="countyId1" class="selectpicker" multiple data-live-search="true" data-size="5" ng-model="mapModle.countyId" ng-options="county.id as county.name for county in vm.countys">-->
+                            <!--</select>-->
+                            <select  id="countyId" class="selectpicker" multiple data-live-search="true" data-size="5" ng-model="mapModle.countyId" ng-options="county.id as county.name group by county.city for county in countys" ng-change="mapModle.clickCounty()">
+                            </select>
+
+                            <!--<label class="col-lg-9">
+                                <div style="margin-left: -10px;margin-top: 10px;" >
+                                    <ui-select multiple ng-model="mapModle.countyId" theme="bootstrap" ng-disabled="disabled" sortable="true" close-on-select="false"  class="form-control" title="&#45;&#45; 营业区 &#45;&#45;"  >
+                                        <ui-select-match placeholder="&#45;&#45; 营业区 &#45;&#45;"  ng-click="mapModle.clickCounty(countyId)">{{$item.name}} </ui-select-match>
+                                        <ui-select-choices repeat="county.id as county in vm.countys | propsFilter: {id: $select.search, name: $select.search}" ng-click="mapModle.clickCounty(countyId)">
+                                            <div ng-bind-html="county.name | highlight: $select.search" ng-class="{'has-error':mapModle.$submitted&&mapModle.countyId.$invalid}" id="countyId" name="countyId"></div>
+                                            <small>
+                                                所属地市: {{county.city}}
+                                                编码: <span ng-bind-html="''+county.id | highlight: $select.search"></span>
+                                            </small>
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
+                            </label>-->
+                        </label>
+
+                        <label class="col-lg-3" style="width: 350px;height: 30px;margin-top: 15px">
+                            <label class="col-lg-4" style="float: left;text-align:center;margin-top: 10px">
+                                <span class="label label-default">行政区</span>
+                            </label>
+                            <div ng-class="{'has-error':mapForm.$submitted&&mapForm.xzCountyName.$invalid&&mapForm.xzCountyName == null}">
+                                <!--<select name="dataTypeId" id="dataTypeId" class="form-control" style="width: 150px;height: 30px" ng-model="mapModle.dataTypeId" ng-options="dataType.id as dataType.name for dataType in dataTypes" required>
+                                </select>-->
+                                <input type="text" class="form-control" placeholder="" style="width: 150px;height: 30px" ng-model="mapModle.xzCountyName">
+                            </div>
+                        </label>
+
+                        <label class="col-lg-3" style="width: 300px;height: 30px;margin-top: 15px">
+                            <label class="col-lg-2" style="float: left;margin-top: 10px">
+                                <span class="label label-default">一级渠道</span>
+                            </label>
+                            <div ng-class="{'has-error':mapForm.$submitted&&mapForm.channelType1Id.$invalid&&mapForm.channelType1Id == null}">
+                               <!-- <select name="channelType1Id" id="channelType1Id" class="form-control" style="width: 150px;height: 30px" ng-model="mapModle.channelType1Id" ng-options="channelType1.id as channelType1.name for channelType1 in channelType1s" required>
+                                </select>-->
+                                <select  id="channelType1Id" class="selectpicker" multiple data-live-search="true" data-size="5" ng-model="mapModle.channelType1Id" ng-options="channelType1.id as channelType1.name for channelType1 in channelType1s">
+                                </select>
+                            </div>
+                        </label>
+
+                        <label class="col-lg-3" style="width: 350px;height: 30px;margin-top: 15px">
+                            <label class="col-lg-1" style="float: left;text-align:center;margin-top: 10px">
+                                <span class="label label-default">二级渠道</span>
+                            </label>
+                            <div ng-class="{'has-error':mapForm.$submitted&&mapForm.channelType2Id.$invalid&&mapForm.channelType2Id == null}">
+                                <!--<select name="channelType2Id" id="channelType2Id" class="form-control" style="width: 150px;height: 30px" ng-model="mapModle.channelType2Id" ng-options="channelType2.id as channelType2.name for channelType2 in channelType2s" required>
+                                </select>-->
+                                <select  id="channelType2Id" class="selectpicker" multiple data-live-search="true" data-size="5" ng-model="mapModle.channelType2Id" ng-options="channelType2.id as channelType2.name for channelType2 in channelType2s">
+                                </select>
+                            </div>
+                        </label>
+
+                        <label style="width: 100px;">
+                            <button type="submit" class="button button-glow button-rounded button-raised button-primary btn btn-lg btn-default navbar-btn " ng-disabled="mapForm.$invalid"  ng-click="mapModle.getData('channel')" >
+                                查询
+                            </button>
+                        </label>
+<!--
+
+                        <label class="col-lg-12" style="height: 30px;">
+                            <div>Choose Tags</div>
+                            <div>
+                                <div>You have choosen:</div>
+                                <hr>
+                                <label data-ng-repeat="city in vm.citys">
+                                    (({{city}}))
+                                </label>
+                                <hr>
+                                <div data-ng-repeat="city in vm.citys">
+                                    <div>{{ city.name }}</div>
+                                    <div data-ng-repeat="county in city.countys">
+                                        <div>
+                                            <input type="checkbox" id={{county.id}} name="{{county.name}}" ng-checked="isSelected(county.id)" ng-click="updateSelection($event,county.id)">
+                                            {{ county.name }}
+                                        </div>
+                                    </div>
+                                    <hr>
+                                </div>
+                            </div>
+
+                            <pre>{{selected|json}}</pre>
+                            <pre>{{selectedTags|json}}</pre>
+                        </label>
+-->
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    <!--<div class="jumbotron"  style="height: 800px">-->
+    <div id="container" style="height: 800px;margin-top: 2%">
+    </div>
+</div>
+
+<script type="text/javascript" src="vender/bootstrap-datetimepicke/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+<script type="text/javascript" src="vender/bootstrap-datetimepicke/bootstrap-datatime-picker.js" charset="UTF-8"></script>
+<!--
+<script>
+  $(document).ready(function () {
+    var mySelect = $('#first-disabled2');
+
+    $('#special').on('click', function () {
+        console.log(mySelect.find('option:selected').value)
+      mySelect.find('option:selected').prop('disabled', true);
+      mySelect.selectpicker('refresh');
+    });
+
+    $('#special2').on('click', function () {
+      mySelect.find('option:disabled').prop('disabled', false);
+      mySelect.selectpicker('refresh');
+    });
+
+    $('#basic2').selectpicker({
+      liveSearch: true,
+      maxOptions: 1
+    });
+  });
+</script>-->

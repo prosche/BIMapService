@@ -1,0 +1,246 @@
+BODY {
+	BACKGROUND-POSITION: center top;
+ BACKGROUND-COLOR: #FFFFFF;
+	COLOR: #000000;
+	FONT-SIZE: 12px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	margin-left: 0px;
+	margin-top: 0px;
+	font-weight: normal;
+	font-family: "Microsoft Yahei", "Arial", "simsun"
+}
+div, p, ul, h2, h3, h4, h5, img {
+	padding: 0px;
+	margin: 0px;
+	border: 0
+}
+.clear {
+	clear: both
+}
+ul {
+	list-style-type: none
+}
+.fl {
+	float: left
+}
+.fr {
+	float: right
+}
+.w98 {
+	width: 98%;
+	margin: 10px auto 0 auto;
+}
+.marginl5 {
+	margin-left: 5px;
+}
+.margint10 {
+	margin-top: 10px;
+}
+.marginb10 {
+	margin-bottom: 10px;
+}
+.bk_box {
+	float: left;
+	margin-top: 13px;
+	margin-left: 10px;
+}
+.label_t {
+	float: left;
+	line-height: 25px;
+	font-size: 14px;
+	margin-right: 5px;
+}
+.bk {
+	float: left;
+	width: 120px;
+	height: 25px;
+	line-height: 25px;
+	background: #FFF;
+	border: 0;
+}
+.main_title {
+	height: 20px;
+	color: #4991bb;
+	text-align: left;
+	border-left: #4991bb solid 3px;
+	line-height: 20px;
+	padding-left: 5px;
+	font-size: 14px;
+	font-weight: bold;
+	margin-bottom: 10px;
+}
+.top {
+	height: 77px;
+	background: #438eb9;
+	color: #FFF;
+	font-size: 22px;
+	line-height: 77px;
+	padding-left: 20px;
+}
+#left ul.leftmenu {
+	width: 120px;
+	font-size: 14px;
+}
+#left ul.leftmenu li {
+	width: 120px;
+	height: 100px;
+	border-bottom: 1px solid #b9b9b9;
+	text-align: center;
+}
+#left ul.leftmenu li a {
+	width: 120px;
+	height: 90px;
+	display: block;
+	background: #fff;
+	color: #438eb9;
+	padding-top: 10px;
+	text-decoration: none
+}
+#left ul.leftmenu li a:hover {
+	width: 120px;
+	height: 90px;
+	padding-top: 10px;
+	display: block;
+	background: #dfeef3;
+	color: #438eb9;
+	text-decoration: none
+}
+#left ul.leftmenu li.Solutions {
+	width: 120px;
+	height: 90px;
+	display: block;
+	background: #dfeef3;
+	color: #438eb9;
+	padding-top: 10px;
+}
+.ztfx_top {
+	height: 50px;
+	background: #f2f2f2;
+}
+.ztfx_n_left {
+	width: 54%;
+	float: left;
+}
+.ztfx_box {
+	width: 310px;
+	float: left;
+	margin-bottom: 10px;
+}
+.ztfx_n_right {
+	width: 45%;
+	float: right;
+}
+.ztfx_list {
+	height: 500px;
+}
+/*CSS manu style pagination*/
+
+.manu {
+	PADDING-RIGHT: 3px;
+	PADDING-LEFT: 3px;
+	PADDING-BOTTOM: 3px;
+	MARGIN: 10px 5px 5px 5px;
+	PADDING-TOP: 3px;
+	TEXT-ALIGN: center
+}
+.manu A {
+	BORDER-RIGHT: #eee 1px solid;
+	PADDING-RIGHT: 5px;
+	BORDER-TOP: #eee 1px solid;
+	PADDING-LEFT: 5px;
+	PADDING-BOTTOM: 2px;
+	MARGIN: 2px;
+	BORDER-LEFT: #eee 1px solid;
+	COLOR: #036cb4;
+	PADDING-TOP: 2px;
+	BORDER-BOTTOM: #eee 1px solid;
+	TEXT-DECORATION: none
+}
+.manu A:hover {
+	BORDER-RIGHT: #999 1px solid;
+	BORDER-TOP: #999 1px solid;
+	BORDER-LEFT: #999 1px solid;
+	COLOR: #666;
+	BORDER-BOTTOM: #999 1px solid
+}
+.manu A:active {
+	BORDER-RIGHT: #999 1px solid;
+	BORDER-TOP: #999 1px solid;
+	BORDER-LEFT: #999 1px solid;
+	COLOR: #666;
+	BORDER-BOTTOM: #999 1px solid
+}
+.manu .current {
+	BORDER-RIGHT: #036cb4 1px solid;
+	PADDING-RIGHT: 5px;
+	BORDER-TOP: #036cb4 1px solid;
+	PADDING-LEFT: 5px;
+	FONT-WEIGHT: bold;
+	PADDING-BOTTOM: 2px;
+	MARGIN: 2px;
+	BORDER-LEFT: #036cb4 1px solid;
+	COLOR: #fff;
+	PADDING-TOP: 2px;
+	BORDER-BOTTOM: #036cb4 1px solid;
+	BACKGROUND-COLOR: #036cb4
+}
+.manu .disabled {
+	BORDER-RIGHT: #eee 1px solid;
+	PADDING-RIGHT: 5px;
+	BORDER-TOP: #eee 1px solid;
+	PADDING-LEFT: 5px;
+	PADDING-BOTTOM: 2px;
+	MARGIN: 2px;
+	BORDER-LEFT: #eee 1px solid;
+	COLOR: #ddd;
+	PADDING-TOP: 2px;
+	BORDER-BOTTOM: #eee 1px solid
+}
+.btn1 {
+	font-size: 14px;
+	color: #ffffff;
+	font-weight: bold;
+	background-color: #f8a608;
+	cursor: hand;
+	width: 90px;
+	height: 26px;
+	line-height: 26px;
+	border: 0;
+}
+.dwdfx_top {
+	background: #f2f2f2;
+	width: 98%;
+	margin: 10px auto;
+	line-height: 50px;
+	height: 100px;
+}
+.dwdfx_list {
+	height: 500px;
+}
+.dwdfx_n_left {
+	width: 54%;
+	float: left;
+}
+.dwdfx_n_right {
+	width: 45%;
+	float: right;
+}
+.dwdfx_list_left {
+	width: 310px;
+	float: left;
+	margin-bottom: 10px;
+}
+.dwdfx_list_right {
+	height: 500px;
+	width: 900px;
+}
+
+
+.mxcxxz_list {
+	height: 400px;
+}
+table {
+	font-size: 12px;
+	font-weight: normal;
+}

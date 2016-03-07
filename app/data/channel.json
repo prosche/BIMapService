@@ -1,0 +1,6 @@
+{
+  "result":[
+    {"opTime":20151101,"channelId":24012045,"channelName":"沈阳苏宁云商销售有限公司n东顺城苏宁","shortName":"苏宁电器","createDate":"2005-10-29","channelAddr":"沈阳市大东区东顺城路17号新玛特北走100米","channelStar":"四星","longitude":123.39723,"latitude":41.7884699,"xzCountyName":"沈河","xzTownId":"","xzTownName":"","xzVillageId":"","xzVillageName":"","isBc":"","bcName":"","cityId":240,"cityName":"沈阳","countyId":24001,"countyName":"沈阳代销管理中心","newChannelType1":96000,"newChannelType1Name":"社会实体渠道","newChannelType2":96300,"newChannelType2Name":"授权店","newChannelType3":96310,"newChannelType3Name":"手机卖场","newChannelType4":96311,"newChannelType4Name":"全国连锁卖场"},
+    {"opTime":20151101,"channelId":24001265,"channelName":"沈阳浩联通讯设备有限公司（空选空充）","shortName":"空选空充","createDate":"2009-10-20","channelAddr":"空选空充","channelStar":"","longitude":122.742901,"latitude":41.516931,"xzCountyName":"和平","xzTownId":"","xzTownName":"","xzVillageId":"","xzVillageName":"","isBc":"","bcName":"","cityId":240,"cityName":"沈阳","countyId":24001,"countyName":"沈阳代销管理中心","newChannelType1":96000,"newChannelType1Name":"社会实体渠道","newChannelType2":96300,"newChannelType2Name":"授权店","newChannelType3":96310,"newChannelType3Name":"手机卖场","newChannelType4":96312,"newChannelType4Name":"区域连锁卖场"}
+  ]
+}
